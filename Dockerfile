@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER pokev25 <pokev25@gmail.com>
 
-LABEL Description="This image is used to start the yona-1.0.2" Vendor="pokev25" Version="1.0.2"
+LABEL Description="This image is used to start the yona-1.0.3" Vendor="pokev25" Version="1.0.3"
 
 ## replace debian mirror with ftp.daum.net in Korea
 RUN cd /etc/apt && \
@@ -31,9 +31,9 @@ RUN mkdir /yona/downloads
 
 ## install yona
 RUN cd /yona/downloads; \
-    wget https://github.com/yona-projects/yona/releases/download/v1.0.2/yona-v1.0.2-bin.zip && \
-    unzip -d /yona/release yona-v1.0.2-bin.zip && \
-    rm -f yona-v1.0.2-bin.zip
+    wget https://github.com/yona-projects/yona/releases/download/v1.0.3/yona-v1.0.3-bin.zip && \
+    unzip -d /yona/release yona-v1.0.3-bin.zip && \
+    rm -f yona-v1.0.3-bin.zip
 
 ## set environment variables
 
