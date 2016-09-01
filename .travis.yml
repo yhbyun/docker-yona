@@ -6,10 +6,10 @@ addons:
 services:
       - docker
 before_script:
-    - mysql -e "create user 'yona'@'localhost' IDENTIFIED BY 'yonadan';"
-    - mysql -e "set global innodb_large_prefix = ON;"
-    - mysql -e "create database yona DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_bin;"
-    - mysql -e "GRANT ALL ON yona.* to 'yona'@'localhost';"
+    - mysql -e -uroot "create user 'yona'@'localhost' IDENTIFIED BY 'yonadan';"
+    - mysql -e -uroot "set global innodb_large_prefix = ON;"
+    - mysql -e -uroot "create database yona DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_bin;"
+    - mysql -e -uroot "GRANT ALL ON yona.* to 'yona'@'localhost';"
 
 script:
     - mkdir yona
