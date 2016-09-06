@@ -19,7 +19,6 @@ script:
   - bash shell/yona.sh build
   - bash shell/yona.sh init
   - bash shell/yona.sh logs
-  - curl localhost:9000
 
 after_script:
   - bash shell/yona.sh stop
