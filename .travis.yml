@@ -1,24 +1,26 @@
+language: bash
 sudo: required
 
-addons:
-  mariadb: '10.0'
-
 services:
-      - docker
+  - docker
+
+addons:
+  - mariadb: '10.0'
+
 before_script:
-    - mysql -e -uroot "create user 'yona'@'localhost' IDENTIFIED BY 'yonadan';"
-    - mysql -e -uroot "set global innodb_large_prefix = ON;"
-    - mysql -e -uroot "create database yona DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_bin;"
-    - mysql -e -uroot "GRANT ALL ON yona.* to 'yona'@'localhost';"
+  - mysql -e -uroot "create user 'yona'@'localhost' IDENTIFIED BY 'yonadan';"
+  - mysql -e -uroot "set global innodb_large_prefix = ON;"
+  - mysql -e -uroot "create database yona DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_bin;"
+  - mysql -e -uroot "GRANT ALL ON yona.* to 'yona'@'localhost';"
 
 script:
-    - mkdir yona
-    - bash shell/yona.sh build
-    - bash shell/yona.sh init
-    - curl localhost:9000
+  - mkdir yona
+  - bash shell/yona.sh build
+  - bash shell/yona.sh init
+  - curl localhost:9000
 after_script:
-    - bash shell/yona.sh stop
-    - bash shell/yona.sh rm
+  - bash shell/yona.sh stop
+  - bash shell/yona.sh rm
 
 notifications:
   email: false
