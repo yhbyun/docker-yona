@@ -1,11 +1,12 @@
 language: bash
+
 sudo: required
 
 services:
   - docker
 
 addons:
-  - mariadb: '10.0'
+  mariadb: '10.0'
 
 before_script:
   - mysql -e -uroot "create user 'yona'@'localhost' IDENTIFIED BY 'yonadan';"
