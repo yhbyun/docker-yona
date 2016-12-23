@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER pokev25 <pokev25@gmail.com>
 
-LABEL Description="This image is used to start the yona-1.1.0" Vendor="pokev25" Version="1.1.0"
+LABEL Description="This image is used to start the yona-1.2.0" Vendor="pokev25" Version="1.2.0"
 
 ## replace debian mirror with ftp.daumkakao.com in Korea
 RUN cd /etc/apt && \
