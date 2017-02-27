@@ -1,6 +1,6 @@
 .git
 .gitignore
-yona
+data
 shell
 *.md
 *.sh

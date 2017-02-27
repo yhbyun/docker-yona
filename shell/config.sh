@@ -6,7 +6,7 @@ PROJECT_NAME="docker-yona"
 ############################################################
 ## docker configurations
 DOCKER_USER="pokev25"
-DOCKER_VERSION="1.2.0"
+DOCKER_VERSION="1.3.2"
 DOCKER_NAME="yona"
 DOCKER_IMAGE="$DOCKER_USER/$DOCKER_NAME:$DOCKER_VERSION"
 ############################################################
@@ -14,6 +14,6 @@ DOCKER_IMAGE="$DOCKER_USER/$DOCKER_NAME:$DOCKER_VERSION"
 DOCKER_CONTAINER_NAME="yona"
 DOCKER_CONTAINER_PORT="9000"
 ############################################################
-# YONA_HOME="/home/user/yona-home"
+# YONA_DATA="/home/user/yona-data"
 JAVA_OPT="-Xmx1024m -Xms1024m"
 ############################################################

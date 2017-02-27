@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER pokev25 <pokev25@gmail.com>
 
-LABEL Description="This image is used to start the yona-1.2.0" Vendor="pokev25" Version="1.2.0"
+LABEL Description="This image is used to start the yona-1.3.2" Vendor="pokev25" Version="1.3.2"
 
 ## replace debian mirror with ftp.daumkakao.com in Korea
 RUN cd /etc/apt && \
@@ -31,13 +31,13 @@ RUN mkdir /yona/downloads
 
 ## install yona
 RUN cd /yona/downloads; \
-    wget https://github.com/yona-projects/yona/releases/download/v1.2.0/yona-v1.2.0-bin.zip && \
-    unzip -d /yona/release yona-v1.2.0-bin.zip && \
-    rm -f yona-v1.2.0-bin.zip
+    wget https://github.com/yona-projects/yona/releases/download/v1.3.2/yona-v1.3.2-bin.zip && \
+    unzip -d /yona/release yona-v1.3.2-bin.zip && \
+    rm -f yona-v1.3.2-bin.zip
 
 ## set environment variables
 
-ENV YONA_HOME "/yona/home"
+ENV YONA_DATA "/yona/data"
 ENV JAVA_OPTS "-Xmx2048m -Xms2048m"
 
 ## add entrypoints
@@ -45,7 +45,7 @@ ADD ./entrypoints /yona/entrypoints
 RUN chmod +x /yona/entrypoints/*.sh
 
 ## yona home directory mount point from host to docker container
-VOLUME ["/yona/source", "/yona/home"]
+VOLUME ["/yona/source", "/yona/data"]
 WORKDIR ["/yona"]
 
 ## yona service port expose from docker container to host
