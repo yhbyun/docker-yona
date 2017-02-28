@@ -57,9 +57,6 @@ function start_container {
 
 function restart_container {
   if [[ -n $(is_running) ]]; then
-    if [ -f "$YONA_DATA/RUNNING_PID" ];then
-      rm $YONA_DATA/RUNNING_PID
-    fi
     echo "*** [restart] Name: \"$DOCKER_CONTAINER_NAME\" PORT: $DOCKER_CONTAINER_PORT ***"
     docker restart $DOCKER_CONTAINER_NAME
   else
@@ -71,11 +68,6 @@ function stop_container {
   if [[ -n $(is_running) ]]; then
     echo "*** [stop] Name: \"$DOCKER_CONTAINER_NAME\" PORT: $DOCKER_CONTAINER_PORT ***"
     docker stop $DOCKER_CONTAINER_NAME
-
-    if [ -f "$YONA_DATA/RUNNING_PID" ];then
-      rm $YONA_DATA/RUNNING_PID
-    fi
-
   else
     echo "*** \"$DOCKER_CONTAINER_NAME\" is not running! ***"
   fi
