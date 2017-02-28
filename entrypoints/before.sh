@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f "$YONA_HOME/RUNNING_PID" ];then
-  rm $YONA_HOME/RUNNING_PID
-  echo "*** [rm] $YONA_HOME/RUNNING_PID ***"
+if [ -f "/yona/release/yona/RUNNING_PID" ];then
+  rm /yona/release/yona/RUNNING_PID
+  echo "*** [rm] /yona/release/yona/RUNNING_PID ***"
 fi

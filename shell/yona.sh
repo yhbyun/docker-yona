@@ -2,10 +2,10 @@
 
 source ./shell/config.sh
 
-echo $YONA_HOME
+echo $YONA_DATA
 
-if [ ! -n "$YONA_HOME" ]; then
-  YONA_HOME=$PWD/yona
+if [ ! -n "$YONA_DATA" ]; then
+  YONA_DATA=$PWD/data
 fi
 
 function is_running {
@@ -17,8 +17,8 @@ function is_exists {
 }
 
 function build_image {
-  if [ ! -d $YONA_HOME ]; then
-    mkdir -p $YONA_HOME
+  if [ ! -d $YONA_DATA ]; then
+    mkdir -p $YONA_DATA
   fi
   echo "*** [Building] \"$DOCKER_IMAGE\" via full package ***"
 
@@ -33,7 +33,7 @@ function init_container {
   --name $DOCKER_CONTAINER_NAME \
   --restart always \
   -p $DOCKER_CONTAINER_PORT:9000 \
-  -v $YONA_HOME:/yona/home \
+  -v $YONA_DATA:/yona/data \
   -e JAVA_OPT="$JAVA_OPT" \
   -e BEFORE_SCRIPT=before.sh \
   -d \
@@ -57,9 +57,6 @@ function start_container {
 
 function restart_container {
   if [[ -n $(is_running) ]]; then
-    if [ -f "$YONA_HOME/RUNNING_PID" ];then
-      rm $YONA_HOME/RUNNING_PID
-    fi
     echo "*** [restart] Name: \"$DOCKER_CONTAINER_NAME\" PORT: $DOCKER_CONTAINER_PORT ***"
     docker restart $DOCKER_CONTAINER_NAME
   else
@@ -71,11 +68,6 @@ function stop_container {
   if [[ -n $(is_running) ]]; then
     echo "*** [stop] Name: \"$DOCKER_CONTAINER_NAME\" PORT: $DOCKER_CONTAINER_PORT ***"
     docker stop $DOCKER_CONTAINER_NAME
-
-    if [ -f "$YONA_HOME/RUNNING_PID" ];then
-      rm $YONA_HOME/RUNNING_PID
-    fi
-
   else
     echo "*** \"$DOCKER_CONTAINER_NAME\" is not running! ***"
   fi
