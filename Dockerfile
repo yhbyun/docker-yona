@@ -1,7 +1,9 @@
 FROM debian:jessie
-MAINTAINER pokev25 <pokev25@gmail.com>
 
-LABEL Description="This image is used to start the yona-1.3.3" Vendor="pokev25" Version="1.3.3"
+LABEL Description="This image is used to start the yona" maintainer="pokev25"
+
+ARG YONA_VERSION=1.3.3
+ARG YONA_DOWNLOAD_URL=https://github.com/yona-projects/yona/releases/download/v${YONA_VERSION}/yona-v${YONA_VERSION}-bin.zip
 
 ## install Oracle Java 8 and clean up installation files
 RUN \
@@ -22,10 +24,10 @@ RUN useradd -m -d /yona -s /bin/bash -U yona && \
 
 ## install yona
 RUN cd /yona/downloads && \
-    wget https://github.com/yona-projects/yona/releases/download/v1.3.3/yona-v1.3.3-bin.zip && \
-    unzip -d /yona/release yona-v1.3.3-bin.zip && \
-    mv /yona/release/yona-1.3.3 /yona/release/yona && \
-    rm -f yona-v1.3.3-bin.zip
+    wget $YONA_DOWNLOAD_URL && \
+    unzip -d /yona/release yona-v$YONA_VERSION-bin.zip && \
+    mv /yona/release/yona-$YONA_VERSION /yona/release/yona && \
+    rm -f yona-v$YONA_VERSION-bin.zip
 
 ## set environment variables
 ENV YONA_DATA "/yona/data"
