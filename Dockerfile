@@ -9,11 +9,11 @@ ARG YONA_DOWNLOAD_URL=https://github.com/yona-projects/yona/releases/download/v$
 RUN \
   echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list && \
   echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list && \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
   apt-get update && \
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-  apt-get install -y oracle-java8-installer oracle-java8-set-default unzip && \
-  rm -rf /var/cache/oracle-jdk8-installer && apt-get clean && rm -rf /var/lib/apt/lists/*
+  apt-get install -y --no-install-recommends oracle-java8-installer oracle-java8-set-default unzip && \
+  apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/oracle-jdk8-installer
 
 ## Timezone
 RUN echo "Asia/Seoul" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
@@ -24,7 +24,7 @@ RUN useradd -m -d /yona -s /bin/bash -U yona && \
 
 ## install yona
 RUN cd /yona/downloads && \
-    wget $YONA_DOWNLOAD_URL && \
+    wget --no-check-certificate $YONA_DOWNLOAD_URL && \
     unzip -d /yona/release yona-v$YONA_VERSION-bin.zip && \
     mv /yona/release/yona-$YONA_VERSION /yona/release/yona && \
     rm -f yona-v$YONA_VERSION-bin.zip
@@ -38,7 +38,7 @@ ADD ./entrypoints /yona/entrypoints
 RUN chmod +x /yona/entrypoints/*.sh
 
 ## yona home directory mount point from host to docker container
-VOLUME ["/yona/source", "/yona/data"]
+VOLUME yona/data
 WORKDIR /yona
 
 ## yona service port expose from docker container to host
