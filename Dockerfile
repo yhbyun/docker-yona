@@ -31,7 +31,7 @@ RUN cd /yona/downloads && \
 
 ## set environment variables
 ENV YONA_DATA "/yona/data"
-ENV JAVA_OPTS "-Xmx2048m -Xms2048m"
+ENV JAVA_OPTS "-Xmx2048m -Xms1024m"
 
 ## add entrypoints
 ADD ./entrypoints /yona/entrypoints

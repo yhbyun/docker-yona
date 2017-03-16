@@ -15,5 +15,5 @@ DOCKER_CONTAINER_NAME="yona"
 DOCKER_CONTAINER_PORT="9000"
 ############################################################
 # YONA_DATA="/home/user/yona-data"
-JAVA_OPT="-Xmx1024m -Xms1024m"
+JAVA_OPT="-Xmx2048m -Xms1024m"
 ############################################################
