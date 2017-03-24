@@ -13,9 +13,16 @@ yona로 이전하기 위하여 위하여 fork버전을 수정함
 - src에서 빌드 부분을 제거
 - 1.* 버전으로 이전하기 위하여 yona프로젝트의 data-export 바이너리로 빌드함
  - data-export브랜치
+- docker-compose 추가
 
 
 ## 간단 사용방법
+
+### docker-compose를 사용하세요.
+docker-compose.yml 에서 volumes 에 데이터가 저장될 경로를 변경하고 사용하세요.
+
+스크립트 방식은 다음 버전 부터 제거될 예정입니다.
+
 
 **docker-yona**는 복잡한 설정 없이 현재 운영하고 있는 **yona** 프로젝트를 바로 최신 yona 서비스로 운영할 수 있게 도와줍니다.
 간단히 **shell/yona.sh** 쉘 파일을 실행시키면 됩니다.

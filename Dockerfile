@@ -2,7 +2,7 @@ FROM debian:jessie
 
 LABEL Description="This image is used to start the yona" maintainer="pokev25"
 
-ARG YONA_VERSION=1.3.3
+ARG YONA_VERSION=1.4.1
 ARG YONA_DOWNLOAD_URL=https://github.com/yona-projects/yona/releases/download/v${YONA_VERSION}/yona-v${YONA_VERSION}-bin.zip
 
 ## install Oracle Java 8 and clean up installation files
@@ -31,7 +31,7 @@ RUN cd /yona/downloads && \
 
 ## set environment variables
 ENV YONA_DATA "/yona/data"
-ENV JAVA_OPTS "-Xmx2048m -Xms2048m"
+ENV JAVA_OPTS "-Xmx2048m -Xms1024m"
 
 ## add entrypoints
 ADD ./entrypoints /yona/entrypoints

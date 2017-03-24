@@ -34,7 +34,7 @@ function init_container {
   --restart always \
   -p $DOCKER_CONTAINER_PORT:9000 \
   -v $YONA_DATA:/yona/data \
-  -e JAVA_OPT="$JAVA_OPT" \
+  -e JAVA_OPTS="$JAVA_OPT" \
   -e BEFORE_SCRIPT=before.sh \
   -d \
   $DOCKER_IMAGE
