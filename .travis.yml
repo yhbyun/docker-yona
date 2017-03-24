@@ -15,14 +15,12 @@ before_script:
   - mysql -uroot -e "GRANT ALL ON yona.* to 'yona'@'localhost';"
 
 script:
-  - mkdir yona
-  - bash shell/yona.sh build
-  - bash shell/yona.sh init
-  - bash shell/yona.sh logs
+  - docker-compose build
+  - docker-compose up -d
+  - docker-compose logs
 
 after_script:
-  - bash shell/yona.sh stop
-  - bash shell/yona.sh rm
+  - docker-compose down
 
 notifications:
   email: false
