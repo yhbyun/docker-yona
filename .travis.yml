@@ -8,6 +8,17 @@ services:
 addons:
   mariadb: '10.0'
 
+env:
+  DOCKER_COMPOSE_VERSION: 1.11.2
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
 before_script:
   - mysql -uroot -e "create user 'yona'@'localhost' IDENTIFIED BY 'yonadan';"
   - mysql -uroot -e "set global innodb_large_prefix = ON;"
@@ -15,14 +26,12 @@ before_script:
   - mysql -uroot -e "GRANT ALL ON yona.* to 'yona'@'localhost';"
 
 script:
-  - mkdir yona
-  - bash shell/yona.sh build
-  - bash shell/yona.sh init
-  - bash shell/yona.sh logs
+  - docker-compose build
+  - docker-compose up -d
+  - docker-compose logs
 
 after_script:
-  - bash shell/yona.sh stop
-  - bash shell/yona.sh rm
+  - docker-compose down
 
 notifications:
   email: false
