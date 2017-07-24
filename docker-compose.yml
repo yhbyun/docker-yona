@@ -3,7 +3,7 @@ version: '2'
 services:
   yona:
     build: .
-    image: pokev25/yona:1.5.1
+    image: pokev25/yona:1.6.1
     restart: always
     environment:
       - BEFORE_SCRIPT=before.sh
