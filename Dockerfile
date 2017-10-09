@@ -2,7 +2,7 @@ FROM debian:jessie
 
 LABEL Description="This image is used to start the yona" maintainer="pokev25"
 
-ARG YONA_VERSION=1.7.0
+ARG YONA_VERSION=1.8.0
 ARG YONA_DOWNLOAD_URL=https://github.com/yona-projects/yona/releases/download/v${YONA_VERSION}/yona-v${YONA_VERSION}-bin.zip
 
 ENV DEBIAN_FRONTEND noninteractive
