@@ -12,3 +12,15 @@ services:
       - ./data:/yona/data
     ports:
       - "9000:9000"
+  mariadb:
+    image: mariadb:latest
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+
+volumes:
+  mariadb_data:
+    driver: local
