@@ -12,7 +12,7 @@ yona로 이전하기 위하여 위하여 fork버전을 수정함
 
 - src에서 빌드 부분을 제거
 - 1.* 버전으로 이전하기 위하여 yona프로젝트의 data-export 바이너리로 빌드함
- - data-export브랜치
+- data-export브랜치
 - docker-compose 추가
 
 
