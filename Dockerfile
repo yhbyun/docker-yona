@@ -2,8 +2,8 @@ FROM openjdk:8-jdk-alpine3.7
 
 LABEL Description="This image is used to start the yona" maintainer="pokev25"
 
-ARG YONA_VERSION=1.9.1
-ARG YONA_BIN=yona-v${YONA_VERSION}-mariadb-10.2.bin.zip
+ARG YONA_VERSION=1.10.0
+ARG YONA_BIN=yona-v${YONA_VERSION}b-mariadb-10.2-bin.zip
 ARG YONA_DOWNLOAD_URL=https://github.com/yona-projects/yona/releases/download/v${YONA_VERSION}/${YONA_BIN}
 
 ## install package
