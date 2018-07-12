@@ -6,7 +6,7 @@ PROJECT_NAME="docker-yona"
 ############################################################
 ## docker configurations
 DOCKER_USER="pokev25"
-DOCKER_VERSION="1.9.1"
+DOCKER_VERSION="1.10.0"
 DOCKER_NAME="yona"
 DOCKER_IMAGE="$DOCKER_USER/$DOCKER_NAME:$DOCKER_VERSION"
 ############################################################
